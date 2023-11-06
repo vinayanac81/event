@@ -1,0 +1,316 @@
+// import mongoose from 'mongoose'
+// const Objectid = mongoose.Types.ObjectId
+
+// const serviceSchema = new mongoose.Schema({
+//     manager_id: {
+//         type: Objectid,
+//         ref:'managers'
+//     },
+//     catering_name: {
+//         type: String
+//     },
+//     catering_logo:{
+//         type:String
+//     },
+//     stage_logo:{
+//         type:String
+//     },
+//     vehicle_logo:{
+//         type:String
+//     },
+//     decoration_logo:{
+//         type:String
+//     },
+//     photograpy_logo:{
+//         type:String
+//     },
+//     catering_status: {
+//         type: Boolean,
+//         default: false
+//     },
+//     starter_status: {
+//         type: Boolean,
+//         default: false
+//     },
+//     stage_name: {
+//         type: String
+//     },
+//     stage_status: {
+//         type: Boolean,
+//         default: false
+//     },
+//     user_stage_status: {
+//         type: Boolean,
+//         default: false
+//     },
+//     decoration_name: {
+//         type: String
+//     },
+//     decoration_status: {
+//         type: Boolean,
+//         default: false
+//     },
+//     user_decoration_status: {
+//         type: Boolean,
+//         default: false
+//     },
+//     photography_name: {
+//         type: String
+//     },
+//     photography_status: {
+//         type: Boolean,
+//         default: false
+//     },
+//     user_photography_status: {
+//         type: Boolean,
+//         default: false
+//     },
+//     vehicle_name: {
+//         type: String
+//     },
+//     vehicle_status: {
+//         type: Boolean,
+//         default: false
+//     },
+//     user_vehicle_status: {
+//         type: Boolean,
+//         default: false
+//     },
+//     status: {
+//         type: Boolean,
+//         default: false
+//     },
+//     cateringMenu: [{
+//         catering_id: {
+//             type: Objectid
+//         },
+//         category_name: {
+//             type: Array
+//         },
+//         starter_name: {
+//             type: String,
+//         },
+//         starter_image: {
+//             type: String
+//         },
+//         starter_price: {
+//             type: Number,
+//         },
+//         main_name: {
+//             type: String,
+//         },
+//         main_price: {
+//             type: Number,
+//         },
+//         main_image: {
+//             type: String
+//         },
+//         dessert_name: {
+//             type: String,
+//         },
+//         dessert_price: {
+//             type: Number,
+//         },
+//         dessert_image: {
+//             type: String
+//         },
+//         salad_name: {
+//             type: String,
+//         },
+//         salad_price: {
+//             type: Number,
+//         },
+//         salad_image: {
+//             type: String
+//         },
+//         status: {
+//             type: Boolean,
+//             default: false
+//         }
+//     }],
+//     stageMenu: [{
+//         stage_id: {
+//             type: Objectid
+//         },
+//         category_name: {
+//             type: Array
+//         },
+//         stage_photo: {
+//             type: String
+//         },
+//         stage_budget: {
+//             type: Number,
+//         },
+//         stage_size: {
+//             type: Number,
+//         },
+//         status: {
+//             type: Boolean,
+//             default: false
+//         }
+//     }],
+//     decorationMenu: [{
+//         decoration_id: {
+//             type: Objectid
+//         },
+//         category_name: {
+//             type: Array
+//         },
+//         decoration_photo: {
+//             type: Array,
+//         },
+//         including_photos: {
+//             type: Array,
+//         },
+//         decoration_budget: {
+//             type: Number,
+//         },
+//         status: {
+//             type: Boolean,
+//             default: false
+//         }
+//     }],
+//     photographyMenu: [{
+//         photography_id: {
+//             type: Objectid
+//         },
+//         category_name: {
+//             type: Array
+//         },
+//         recent_photos: {
+//             type: Array
+//         },
+//         shop_name: {
+//             type: String
+//         },
+//         mobile_number: {
+//             type: Number
+//         },
+//         address: {
+//             type: String
+//         },
+//         budget: {
+//             type: Number
+//         },
+//         status: {
+//             type: Boolean,
+//             default: false
+//         }
+//     }],
+//     luxuryVehicleMenu: [{
+//         vehicle_id: {
+//             type: Objectid
+//         },
+//         category_name: {
+//             type: Array
+//         },
+//         vehicle_image: {
+//             type: Array
+//         },
+//         owner_name: {
+//             type: String
+//         },
+//         mobile_number: {
+//             type: Number
+//         },
+//         rent_price: {
+//             type: Number
+//         },
+//         status: {
+//             type: Boolean,
+//             default: false
+//         }
+//     }]
+// })
+
+
+// const serviceModel = mongoose.model('services', serviceSchema)
+// export default serviceModel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if (userCart) {
+    console.log("y");
+
+    for (let i = 0; i < stageChecked.length; i++) {
+      console.log(stageChecked[i].category_name);
+      await cartModel.findOneAndUpdate(
+        { user_id: new Objectid(userId) },
+        {
+          $push: {
+            categories: [
+              {
+                id: stageChecked[i].id,
+                image: stageChecked[i].image,
+                category_name: stageChecked[i].category_name,
+                total_price: stageChecked[i].price,
+                price: stageChecked[i].price,
+                quantity: stageChecked[i].quantity,
+              },
+            ],
+          },
+        }
+      );
+    }
+  } else {
+    for (let i = 0; i < stageChecked.length; i++) {
+      items[z] = stageChecked[i];
+      z++;
+      const ifUserCart = await cartModel.findOne({
+        user_id: new Objectid(userId),
+      });
+      if (ifUserCart) {
+        console.log("y");
+
+        await cartModel.findOneAndUpdate(
+          { user_id: new Objectid(userId) },
+          {
+            $push: {
+              categories: [
+                {
+                  id: stageChecked[i].id,
+                  image: stageChecked[i].image,
+                  category_name: stageChecked[i].category_name,
+                  total_price: stageChecked[i].price,
+                  price: stageChecked[i].price,
+                  quantity: stageChecked[i].quantity,
+                },
+              ],
+            },
+          }
+        );
+      } else {
+        const newCart = new cartModel({
+          user_id: userId,
+          categories: [
+            {
+              id: stageChecked[i].id,
+              image: stageChecked[i].image,
+              category_name: stageChecked[i].category_name,
+              total_price: stageChecked[i].price,
+              price: stageChecked[i].price,
+              quantity: stageChecked[i].quantity,
+            },
+          ],
+        });
+        await newCart.save();
+      }
+    }
+    // let newCartObj = {
+    //   user_id: userId,
+    //   categories: items,
+    // };
+    // cartModel.create(newCartObj);
+    // console.log("no");
+  }

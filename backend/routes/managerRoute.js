@@ -1,0 +1,36 @@
+import express from "express"
+import { Managerdata,  addDecorationMenu,  addDessert, addMain, addSalad, addStageMenu, addStarter, addVehicleMenu, deleteDecoration, deleteDessert, deleteMain, deleteSalad, deleteStage, deleteStarter, deleteVehicle, getAddedServices, getBooking, getManagerData, getMenuList, login, selectServices, signWithOtp, signup, updateDecorationStatus, updateFoodStatus, updatePhotograpyStatus, updateStageStatus, updateVehicleStatus, uploadImage } from "../controllers/managerController.js"
+import managerAuth from "../middleware/managerAuth.js"
+
+const router=express.Router()
+
+router.post("/signup",signup)
+router.post("/otp",signWithOtp)
+router.post("/login",login)
+router.post("/manager-data",managerAuth,Managerdata)
+router.get("/get-manager-data",managerAuth,getManagerData)
+router.post("/selected-services",managerAuth,selectServices)
+router.get("/addedServices",managerAuth,getAddedServices)
+router.put("/update-food-status",managerAuth,updateFoodStatus)
+router.put("/update-stage-status",managerAuth,updateStageStatus)
+router.put("/update-decoration-status",managerAuth,updateDecorationStatus)
+router.put("/update-photograpy-status",managerAuth,updatePhotograpyStatus)
+router.put("/update-vehicle-status",managerAuth,updateVehicleStatus)
+router.get("/menu-list",managerAuth,getMenuList)
+router.post("/add-starter",managerAuth,addStarter)
+router.post("/add-main",managerAuth,addMain)
+router.post("/add-dessert",managerAuth,addDessert)
+router.post("/add-salad",managerAuth,addSalad)
+router.put("/delete-starter/:id",managerAuth,deleteStarter)
+router.put("/delete-main/:id",managerAuth,deleteMain)
+router.put("/delete-dessert/:id",managerAuth,deleteDessert)
+router.put("/delete-salad/:id",managerAuth,deleteSalad)
+router.post("/add-stage-menu",managerAuth,addStageMenu)
+router.put("/delete-stage/:id",managerAuth,deleteStage)
+router.post("/add-decoration-menu",managerAuth,addDecorationMenu)
+router.put("/delete-decoration/:id",managerAuth,deleteDecoration)
+router.post("/add-vehicle-menu",managerAuth,addVehicleMenu)
+router.put("/delete-vehicle/:id",managerAuth,deleteVehicle)
+router.get("/booking",managerAuth,getBooking)
+router.post("/upload-image",managerAuth,uploadImage)
+export default router
